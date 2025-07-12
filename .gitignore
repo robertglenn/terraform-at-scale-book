@@ -11,9 +11,6 @@
 *.tfstate
 *.tfstate.*
 
-# Local tfvars terraform.tfvars
-**/*.tfvars
-
 # tf lock file
 **/.terraform.lock.hcl
 
