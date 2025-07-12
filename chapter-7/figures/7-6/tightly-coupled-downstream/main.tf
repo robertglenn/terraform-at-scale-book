@@ -1,5 +1,5 @@
 
-resource "google_compute_subnetwork" tas-7-7-snet-01 {
+resource "google_compute_subnetwork" tas-7-6-snet-01 {
     for_each = { for vpc in var.vpc_info : vpc.network_id => vpc }
 
     name          = each.value.snet1.subnet_name
@@ -8,7 +8,7 @@ resource "google_compute_subnetwork" tas-7-7-snet-01 {
     network       = each.value.network_id
 }
 
-resource "google_compute_subnetwork" tas-7-7-snet-02 {
+resource "google_compute_subnetwork" tas-7-6-snet-02 {
     for_each = { for vpc in var.vpc_info : vpc.network_id => vpc }
 
     name          = each.value.snet2.subnet_name
@@ -17,7 +17,7 @@ resource "google_compute_subnetwork" tas-7-7-snet-02 {
     network       = each.value.network_id
 }
 
-resource "google_compute_subnetwork" tas-7-7-snet-03 {
+resource "google_compute_subnetwork" tas-7-6-snet-03 {
     for_each = { for vpc in var.vpc_info : vpc.network_id => vpc }
 
     name          = each.value.snet3.subnet_name
