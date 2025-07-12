@@ -1,12 +1,16 @@
 
 resource "google_compute_network" "tas-7-7-vpc" {
-  name                    = "vpc-terraform-at-scale-7-7"
-  auto_create_subnetworks = false
+    for_each = var.vpc_names
+
+    name                    = each.value
+    auto_create_subnetworks = false
 }
 
 resource "google_compute_firewall" tas-7-7-fw-allow-http {
-    name          = var.fw_allow_http_name
-    network       = google_compute_network.tas-7-7-vpc.id
+    for_each = google_compute_network.tas-7-7-vpc[*].id
+
+    name          = "${var.fw_http_name} for VPC ${each.value}"
+    network       = each.value
 
     allow {
         protocol = "tcp"
@@ -15,8 +19,10 @@ resource "google_compute_firewall" tas-7-7-fw-allow-http {
 }
 
 resource "google_compute_firewall" tas-7-7-fw-deny-icmp {
-    name          = var.fw_deny_icmp_name
-    network       = google_compute_network.tas-7-7-vpc.id
+    for_each = google_compute_network.tas-7-7-vpc[*].id
+
+    name          = "${var.fw_icmp_name} for VPC ${each.value}"
+    network       = each.value
 
     deny {
         protocol = "icmp"

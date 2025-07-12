@@ -1,21 +1,27 @@
 
 resource "google_compute_subnetwork" tas-7-7-snet-01 {
-    name          = var.snet_01_name
-    ip_cidr_range = var.snet_01_cidr
-    region        = var.snet_01_region
-    network       = var.tas_7_7_vpc_id
+    for_each = { for vpc in var.vpc_info : vpc.network_id => vpc }
+
+    name          = each.value.snet1.subnet_name
+    ip_cidr_range = each.value.snet1.subnet_cidr
+    region        = each.value.snet1.subnet_region
+    network       = each.value.network_id
 }
 
 resource "google_compute_subnetwork" tas-7-7-snet-02 {
-    name          = var.snet_02_name
-    ip_cidr_range = var.snet_02_cidr
-    region        = var.snet_02_region
-    network       = var.tas_7_7_vpc_id
+    for_each = { for vpc in var.vpc_info : vpc.network_id => vpc }
+
+    name          = each.value.snet2.subnet_name
+    ip_cidr_range = each.value.snet2.subnet_cidr
+    region        = each.value.snet2.subnet_region
+    network       = each.value.network_id
 }
 
 resource "google_compute_subnetwork" tas-7-7-snet-03 {
-    name          = var.snet_03_name
-    ip_cidr_range = var.snet_03_cidr
-    region        = var.snet_03_region
-    network       = var.tas_7_7_vpc_id
+    for_each = { for vpc in var.vpc_info : vpc.network_id => vpc }
+
+    name          = each.value.snet3.subnet_name
+    ip_cidr_range = each.value.snet3.subnet_cidr
+    region        = each.value.snet3.subnet_region
+    network       = each.value.network_id
 }
