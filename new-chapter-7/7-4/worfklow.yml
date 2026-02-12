@@ -1,0 +1,16 @@
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    container:
+      image: ghcr.io/tas/job:1.0.0
+
+    env:
+      # These get passed to the container and can be read
+      # by the script used in the entrypoint
+      JOB_ENV: "dev"
+      MAKE_PUBLIC: "false"
+
+    steps:
+      - name: Run commands in the container
+        run: echo "This runs inside the custom container"

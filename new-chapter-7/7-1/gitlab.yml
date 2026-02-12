@@ -1,0 +1,25 @@
+
+stages:
+  - test
+  - build
+  - deploy
+
+lint:
+  stage: test
+  script:
+    - npm run lint
+
+unit_tests:
+  stage: test
+  script:
+    - npm test
+
+build_app:
+  stage: build
+  script:
+    - npm run build
+
+deploy_prod:
+  stage: deploy
+  script:
+    - ./deploy.sh

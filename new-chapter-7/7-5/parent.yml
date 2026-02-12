@@ -1,0 +1,24 @@
+stages:
+  - build
+  - deploy
+
+build_app:
+  stage: build
+  image: node:20
+  script:
+    - npm ci
+    - npm run build
+    - tar -czf app.tar.gz dist/
+  artifacts:
+    paths:
+      - app.tar.gz
+    expire_in: 1 hour
+
+trigger_deploy:
+  stage: deploy
+  trigger:
+    project: platform/deploy-pipeline
+    branch: main
+    strategy: depend
+  variables:
+    APP_ARTIFACT_NAME: app.tar.gz
