@@ -2,11 +2,11 @@
 # Descriptions omitted for brevity
 
 variable "network_name" {
-  type    = string
+  type = string
 }
 
 variable "instance_name" {
-  type    = string
+  type = string
 }
 
 variable "machine_type" {

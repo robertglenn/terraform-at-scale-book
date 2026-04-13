@@ -5,6 +5,6 @@ variable "project_id" {
 }
 
 variable "dataset_id" {
-  type = string
+  type        = string
   description = "ID of the BigQuery Dataset"
 }

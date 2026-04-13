@@ -2,7 +2,7 @@
 
 locals {
   augmented_vms_map = {
-  for vm in var. vms_map : vm => merge(
+    for vm in var.vms_map : vm => merge(
       vm,
       {
         name        = "vm-${vm.app_id}-${slice(vm.machine_type, 0, 2)}-${slice(vm.zone, 0, 6)}"
@@ -12,9 +12,9 @@ locals {
   }
 }
 
-resource "google_compute_instance" vms-collection {
+resource "google_compute_instance" "vms-collection" {
   for_each = local.augmented_vms_map
-  
+
   name         = each.value.name
   description  = each.value.description
   zone         = each.value.zone

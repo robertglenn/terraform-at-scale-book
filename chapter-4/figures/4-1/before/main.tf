@@ -1,9 +1,9 @@
 
-resource google_compute_network "vpc" {
+resource "google_compute_network" "vpc" {
   name = var.network_name
 }
 
-resource google_compute_instance "instance" {
+resource "google_compute_instance" "instance" {
   name         = var.instance_name
   machine_type = var.machine_type
   zone         = var.instance_zone

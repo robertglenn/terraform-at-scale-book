@@ -1,7 +1,7 @@
 
 variable "submodule_variable" {
   description = "value"
-  type        = object({
+  type = object({
     string_val      = string
     number_list_val = list(number)
   })

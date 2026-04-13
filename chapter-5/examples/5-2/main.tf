@@ -6,7 +6,7 @@ variable "os_image" {
   type        = string
 
   validation {
-    condition = strcontains(var.os_image, "rhel")
+    condition     = strcontains(var.os_image, "rhel")
     error_message = "os_image must be a rhel image"
   }
 }
@@ -16,7 +16,7 @@ variable "subnetworks" {
   type        = list(string)
 
   validation {
-    condition = length(var.subnetworks) > 0
+    condition     = length(var.subnetworks) > 0
     error_message = "subnetworks must not be empty."
   }
 }
@@ -64,9 +64,9 @@ resource "google_compute_instance" "generic" {
 resource "google_compute_disk" "optional" {
   for_each = { for disk in var.disk_data : disk.device_name => disk }
 
-  name = "${google_compute_instance.generic.name}-${each.key}"
-  type = "pd-ssd"
-  zone = var.zone
+  name                      = "${google_compute_instance.generic.name}-${each.key}"
+  type                      = "pd-ssd"
+  zone                      = var.zone
   physical_block_size_bytes = each.value.size_bytes
 }
 

@@ -35,11 +35,11 @@ resource "google_compute_firewall" "default_deny_tcp" {
   name     = "${var.app_name}-default-deny"
   network  = google_compute_network.default.self_link
   priority = 65535
-  
+
   destination_ranges = ["0.0.0.0/0"]
 
   deny {
-    protocol  = "tcp"
+    protocol = "tcp"
   }
 }
 

@@ -1,6 +1,6 @@
 
 resource "google_compute_network" "default" {
-  name = "tas-9-1-combined-network"
+  name    = "tas-9-1-combined-network"
   project = var.project_id
 }
 
