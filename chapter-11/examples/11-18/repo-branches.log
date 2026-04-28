@@ -1,0 +1,8 @@
+project-1 % git checkout -b feature/untracked-resources
+Switched to a new branch 'feature/untracked-resources'
+project-1 % cd ../project-2
+project-2 % git checkout -b feature/untracked-resources
+Switched to a new branch 'feature/untracked-resources'
+project-2 % cd ../project-3
+project-3 % git checkout -b feature/untracked-resources
+Switched to a new branch 'feature/untracked-resources'

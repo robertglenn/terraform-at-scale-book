@@ -1,0 +1,20 @@
+root-module % tf show -json | jq -r '
+  .values.root_module.resources[]
+  | select(.values.id != null)
+  | "\(.address) \(.values.id)"
+'
+google_compute_network.dev projects/tas-11-dev/global/networks/tas-11-dev-vpc
+google_compute_subnetwork.dev_region_one projects/tas-11-dev/regions/us-central1/subnetworks/tas-11-dev-us-central1-snet
+google_compute_subnetwork.dev_region_two projects/tas-11-dev/regions/us-west1/subnetworks/tas-11-dev-us-west1-snet
+google_compute_instance.dev_region_one projects/tas-11-dev/zones/us-central1-a/instances/tas-11-dev-us-central1-comp
+google_compute_instance.dev_region_two projects/tas-11-dev/zones/us-west1-b/instances/tas-11-dev-us-west1-comp
+google_compute_network.test projects/tas-11-test/global/networks/tas-11-test-vpc
+google_compute_subnetwork.test_region_one projects/tas-11-test/regions/us-central1/subnetworks/tas-11-test-us-central1-snet
+google_compute_subnetwork.test_region_two projects/tas-11-test/regions/us-west1/subnetworks/tas-11-test-us-west1-snet
+google_compute_instance.test_region_one projects/tas-11-test/zones/us-central1-a/instances/tas-11-test-us-central1-comp
+google_compute_instance.test_region_two projects/tas-11-test/zones/us-west1-b/instances/tas-11-test-us-west1-comp
+google_compute_network.prod projects/tas-11-prod/global/networks/tas-11-prod-vpc
+google_compute_subnetwork.prod_region_one projects/tas-11-prod/regions/us-central1/subnetworks/tas-11-prod-us-central1-snet
+google_compute_subnetwork.prod_region_two projects/tas-11-prod/regions/us-west1/subnetworks/tas-11-prod-us-west1-snet
+google_compute_instance.prod_region_one projects/tas-11-prod/zones/us-central1-a/instances/tas-11-prod-us-central1-comp
+google_compute_instance.prod_region_two projects/tas-11-prod/zones/us-west1-b/instances/tas-11-prod-us-west1-comp

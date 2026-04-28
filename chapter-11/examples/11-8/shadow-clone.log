@@ -1,0 +1,11 @@
+repos % git clone git@git-registry.com:tas-11/old-repo-name.git new-repo-name
+Cloning into 'new-repo-name'...
+remote: Enumerating objects: 241, done.
+remote: Counting objects: 100% (241/241), done.
+remote: Compressing objects: 100% (154/154), done.
+remote: Total 241 (delta 114), reused 201 (delta 77), pack-reused 0 (from 0)
+Receiving objects: 100% (241/241), 411.32 KiB | 957.00 KiB/s, done.
+Resolving deltas: 100% (114/114), done.
+repos % cd new-repo-name
+new-repo-name % git remote set-url origin git@git-registry.com:tas-11/new-repo-name.git
+new-repo-name % git push origin main

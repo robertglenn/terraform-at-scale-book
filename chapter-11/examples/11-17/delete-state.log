@@ -1,0 +1,4 @@
+~ % gcloud storage rm gs://terraform-at-scale/chapter-11/default.tfstate
+Removing objects:
+⠹Removing gs://terraform-at-scale/chapter-11/default.tfstate...
+  Completed 1/1

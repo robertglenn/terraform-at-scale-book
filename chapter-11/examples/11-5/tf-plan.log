@@ -1,0 +1,51 @@
+...
+  # module.network.google_compute_network.default will be created
+  + resource "google_compute_network" "default" {
+      + id            = (known after apply)
+      + name          = "tas-11-vpc"
+      + project       = "tas-11"
+      + routing_mode  = (known after apply)
+      + self_link     = (known after apply)
+    }
+
+  # google_compute_network.default will be destroyed
+  # (because google_compute_network.default is not in configuration)
+  - resource "google_compute_network" "default" {
+      - id            = "projects/tas-11/global/networks/tas-11-vpc" -> null
+      - name          = "tas-11-vpc" -> null
+      - project       = "tas-11" -> null
+      - routing_mode  = "REGIONAL" -> null
+      - self_link     = "https://www.googleapis.com/compute/v1/projects/tas-11/global/networks/tas-11-vpc" -> null
+    }
+
+  # google_compute_subnetwork.region_one will be destroyed
+  # (because google_compute_subnetwork.region_one is not in configuration)
+  - resource "google_compute_subnetwork" "region_one" {
+      - gateway_address = "10.2.0.1" -> null
+      - id              = "projects/tas-11/regions/us-central1/subnetworks/tas-11-us-central1-snet" -> null
+      - ip_cidr_range   = "10.2.0.0/16" -> null
+      - name            = "tas-11-us-central1-snet" -> null
+      - network         = "https://www.googleapis.com/compute/v1/projects/tas-11/global/networks/tas-11-vpc" -> null
+      - project         = "tas-11" -> null
+      - purpose         = "PRIVATE" -> null
+      - region          = "us-central1" -> null
+      - self_link       = "https://www.googleapis.com/compute/v1/projects/tas-11/regions/us-central1/subnetworks/tas-11-us-central1-snet" -> null
+    }
+
+  # module.network.google_compute_subnetwork.region_one will be created
+  + resource "google_compute_subnetwork" "region_one" {
+      + gateway_address = (known after apply)
+      + id              = (known after apply)
+      + ip_cidr_range   = "10.2.0.0/16"
+      + name            = "tas-11-us-central1-snet"
+      + network         = "tas-11-vpc"
+      + project         = "tas-11"
+      + purpose         = (known after apply)
+      + region          = "us-central1"
+      + self_link       = (known after apply)
+    }
+
+    ...
+
+Plan: 3 to add, 0 to change, 3 to destroy.
+...
