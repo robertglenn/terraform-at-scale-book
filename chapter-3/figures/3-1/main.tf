@@ -12,7 +12,7 @@ locals {
   }
 }
 
-resource "google_compute_instance" "vms-collection" {
+resource "google_compute_instance" "vms_collection" {
   for_each = local.augmented_vms_map
 
   name         = each.value.name

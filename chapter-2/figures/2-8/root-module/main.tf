@@ -1,5 +1,5 @@
 
-module "tas-2-8-submodule" {
+module "tas_2_8_submodule" {
   source = "../submodule"
 
   submodule_string_key  = var.submodule_variable.string_val

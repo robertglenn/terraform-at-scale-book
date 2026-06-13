@@ -134,18 +134,3 @@ variable "snet_09_region" {
   type        = string
 }
 
-variable "snet_10_name" {
-  description = "Subnet name."
-  type        = string
-}
-
-variable "snet_10_cidr" {
-  description = "Subnet CIDR as a string."
-  type        = string
-}
-
-variable "snet_10_region" {
-  description = "Subnet region in GCP."
-  type        = string
-}
-

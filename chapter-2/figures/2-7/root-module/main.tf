@@ -1,5 +1,5 @@
 
-module "tas-2-7-intermediate-module-module" {
+module "tas_2_7_intermediate_module_module" {
   source = "../intermediate-module-module"
 
   # Both will produce validation errors in the third-party module

@@ -10,7 +10,7 @@ locals {
   }
 }
 
-module "module-with-complex-local-value" {
+module "module_with_complex_local_value" {
   source = "third-party-module-tas-2-4"
 
   complex_module_field = local.complex_module_local
