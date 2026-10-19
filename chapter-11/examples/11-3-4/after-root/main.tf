@@ -3,13 +3,13 @@
 # Locals and Data Sources
 # *****************************************************************************
 locals {
-  vpc_name                = "tas-11-vpc"
-  location                = upper(split("-", local.region_one)[0])
-  bucket_name             = "tas-11-bucket"
-  region_one              = data.google_compute_zones.region_one.id
-  zone_one                = data.google_compute_zones.region_one.names[0]
-  region_two              = data.google_compute_zones.region_two.id
-  zone_two                = data.google_compute_zones.region_two.names[0]
+  vpc_name    = "tas-11-vpc"
+  location    = upper(split("-", local.region_one)[0])
+  bucket_name = "tas-11-bucket"
+  region_one  = data.google_compute_zones.region_one.id
+  zone_one    = data.google_compute_zones.region_one.names[0]
+  region_two  = data.google_compute_zones.region_two.id
+  zone_two    = data.google_compute_zones.region_two.names[0]
 }
 
 data "google_compute_zones" "region_one" {

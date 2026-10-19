@@ -1,9 +1,9 @@
 
 module "network" {
   source = "../network"
-  
+
   vpc_name = "vpc-tas-3-2"
-  regions  = [ "us-central1", "us-east1", "us-west1" ]
+  regions  = ["us-central1", "us-east1", "us-west1"]
 }
 
 module "gke" {

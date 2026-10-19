@@ -1,5 +1,5 @@
 
-module "tas_2_7_third_party_module" {
+module "tas_2_17_third_party_module" {
   source = "../third-party-module"
 
   third_party_module_field = {

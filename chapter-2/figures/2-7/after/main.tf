@@ -11,7 +11,7 @@ locals {
 }
 
 module "module_with_complex_local_value" {
-  source = "third-party-module-tas-2-4"
+  source = "third-party-module-tas-2-7"
 
   complex_module_field = local.complex_module_local
 }

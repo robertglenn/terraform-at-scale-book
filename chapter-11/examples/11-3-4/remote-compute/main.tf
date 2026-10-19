@@ -44,7 +44,7 @@ resource "google_compute_instance" "region_one" {
   }
 
   lifecycle {
-    ignore_changes = [ google_compute_disk.region_one ]
+    ignore_changes = [google_compute_disk.region_one]
   }
 }
 
@@ -86,6 +86,6 @@ resource "google_compute_instance" "region_two" {
   }
 
   lifecycle {
-    ignore_changes = [ google_compute_disk.region_two ]
+    ignore_changes = [google_compute_disk.region_two]
   }
 }

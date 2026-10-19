@@ -1,7 +1,6 @@
 
-module "tas_2_8_submodule" {
+module "module_with_complex_variable" {
   source = "../submodule"
 
-  submodule_string_key  = var.submodule_variable.string_val
-  submodule_number_list = var.submodule_variable.number_list_val
+  complex_module_field = var.complex_module_variable
 }
