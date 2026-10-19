@@ -1,0 +1,19 @@
+# Local Terraform artifacts
+.terraform/
+*.tfstate
+*.tfstate.*
+
+# Sensitive data
+*.pem
+*.key
+
+# Editor files
+.DS_Store
+.vscode/
+.idea/
+
+# Log files
+*.log
+
+# Test files
+*.tftest.hcl
