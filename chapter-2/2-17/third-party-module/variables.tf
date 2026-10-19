@@ -11,6 +11,9 @@ variable "third_party_module_field" {
         for val in values(var.third_party_module_field.digit_map_key)
       : parseint(val, 10) > 0])
     )
-    error_message = "string_key must be lowercase letters and the values of the digit_map_key must all be positive digital integers"
+    error_message = join(" ", [
+      "string_key must be lowercase letters and the values",
+      "of the digit_map_key must all be positive digital integers"]
+    )
   }
 }
