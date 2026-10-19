@@ -1,5 +1,9 @@
 # Terraform at Scale book
 
+Ebook version available on [O'Reilly Platform](https://learning.oreilly.com/library/view/terraform-at-scale/9798341649705/).
+
+Print copy available for pre-order on [Amazon](https://www.amazon.com/Terraform-Scale-Practices-Enterprise-Development/dp/B0GKF63FJ4/ref=sr_1_1).
+
 ## Disclaimer (October 19, 2026)
 This repository is a work in progress. Examples here will be updated with estimated time of completion October 21, 2026 by 11:59 ET.
 
