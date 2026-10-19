@@ -1,13 +1,13 @@
 
-resource "google_compute_network" "tas_6_vpc" {
+resource "google_compute_network" "tas_6_1_vpc" {
   for_each = var.vpc_names
 
   name                    = each.value
   auto_create_subnetworks = false
 }
 
-resource "google_compute_firewall" "tas_6_fw_allow_http" {
-  for_each = google_compute_network.tas_6_vpc[*].id
+resource "google_compute_firewall" "tas_6_1_fw_allow_http" {
+  for_each = google_compute_network.tas_6_1_vpc[*].id
 
   name    = "${var.fw_http_name} for VPC ${each.value}"
   network = each.value
@@ -18,8 +18,8 @@ resource "google_compute_firewall" "tas_6_fw_allow_http" {
   }
 }
 
-resource "google_compute_firewall" "tas_6_fw_deny_icmp" {
-  for_each = google_compute_network.tas_6_vpc[*].id
+resource "google_compute_firewall" "tas_6_1_fw_deny_icmp" {
+  for_each = google_compute_network.tas_6_1_vpc[*].id
 
   name    = "${var.fw_icmp_name} for VPC ${each.value}"
   network = each.value
