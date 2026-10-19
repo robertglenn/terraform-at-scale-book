@@ -1,46 +1,92 @@
 
-module "local" {
-  source = "./modules/local"
-  ...
+# -------------------------
+# Before - Root Module
+# -------------------------
+
+resource "google_compute_subnetwork" "default" {
+  for_each = { for stack in var.stack_data : stack.app_name => stack }
+
+  network = var.network_id
+  name    = "${each.value.app_name}-snet"
+  region  = each.value.region
 }
 
-module "public_registry" {
-  source = "hashicorp/vault/aws"
-  ...
+resource "google_compute_instance" "default" {
+  for_each = { for stack in var.stack_data : stack.app_name => stack }
+
+  name         = each.value.app_name
+  machine_type = var.machine_type
+  zone         = each.value.zone
+
+  boot_disk {
+    initialize_params {
+      image = var.os_image
+    }
+  }
+
+  network_interface {
+    subnetwork = google_compute_subnetwork.default[each.key].self_link
+  }
+
+  service_account {
+    email  = google_service_account.default[each.key].email
+    scopes = ["cloud-platform"]
+  }
 }
 
-module "private_registry" {
-  source = "app.terraform.io/tas/private_module/aws"
-  ...
+resource "google_service_account" "default" {
+  for_each = { for stack in var.stack_data : stack.app_name => stack }
+
+  account_id = "${each.value.app_name}-account"
 }
 
-module "private_registry_version" {
-  source  = "app.terraform.io/tas/private_module/aws"
-  version = ">= v1.0.1-alpha, < v1.2.0"
-  ...
+# -------------------------
+# After - Root Module
+# -------------------------
+
+module "nested" {
+  for_each = { for stack in var.stack_data : stack.app_name => stack }
+  source   = "./modules/nested"
+
+  network_id   = var.network_id
+  app_name     = each.value.app_name
+  region       = each.value.region
+  zone         = each.value.zone
+  machine_type = var.machine_type
+  os_image     = var.os_image
 }
 
-module "git_repository" {
-  source = "git::ssh://mydomain.com/git/private_module"
-  ...
+# -------------------------
+# After - Nested Module
+# -------------------------
+
+resource "google_compute_subnetwork" "default" {
+  network = var.network_id
+  name    = "${var.app_name}-snet"
+  region  = var.region
 }
 
-module "git_repository_version" {
-  source = "git::ssh://mydomain.com/git/private_module?ref=v1.0.1-rc.1"
-  ...
+resource "google_compute_instance" "default" {
+  name         = var.app_name
+  machine_type = var.machine_type
+  zone         = var.zone
+
+  boot_disk {
+    initialize_params {
+      image = var.os_image
+    }
+  }
+
+  network_interface {
+    subnetwork = google_compute_subnetwork.default.self_link
+  }
+
+  service_account {
+    email  = google_service_account.default.email
+    scopes = ["cloud-platform"]
+  }
 }
 
-module "git_repository_nested_version" {
-  source = "git::ssh://mydomain.com/git/private_module//modules/nested"
-  ...
-}
-
-module "bucket_zip" {
-  source = "s3::https://s3.amazonaws.com/tas/c5/module.zip"
-  ...
-}
-
-module "bucket_zip_nested" {
-  source = "s3::https://s3.amazonaws.com/tas/c5/module.zip//modules/nested"
-  ...
+resource "google_service_account" "default" {
+  account_id = "${var.app_name}-account"
 }

@@ -1,90 +1,42 @@
 
-# -------------------------
-# Before - Root Module
-# -------------------------
+module "app_1_dev" {
+  source = "./modules/stack"
 
-resource "google_compute_subnetwork" "default" {
-  for_each = { for stack in var.stack_data : stack.app_name => stack }
-
-  network = var.network_id
-  name    = "${each.value.app_name}-snet"
-  region  = each.value.region
+  app_name   = var.app_1_name
+  project_id = var.app_1_dev_project
 }
 
-resource "google_compute_instance" "default" {
-  for_each = { for stack in var.stack_data : stack.app_name => stack }
+module "app_1_prod" {
+  source = "./modules/stack"
 
-  name         = each.value.app_name
-  machine_type = var.machine_type
-  zone         = each.value.zone
-
-  boot_disk {
-    initialize_params {
-      image = var.os_image
-    }
-  }
-
-  network_interface {
-    subnetwork = google_compute_subnetwork.default[each.key].self_link
-  }
-
-  service_account {
-    email  = google_service_account.default[each.key].email
-    scopes = ["cloud-platform"]
-  }
+  app_name   = var.app_1_name
+  project_id = var.app_1_prod_project
 }
 
-resource "google_service_account" "default" {
-  for_each = { for stack in var.stack_data : stack.app_name => stack }
+module "app_2_dev" {
+  source = "./modules/stack"
 
-  account_id = "${each.value.app_name}-account"
+  app_name   = var.app_2_name
+  project_id = var.app_2_dev_project
+}
+
+module "app_2_prod" {
+  source = "./modules/stack"
+
+  app_name   = var.app_2_name
+  project_id = var.app_2_prod_project
 }
 
 # -------------------------
-# After - Root Module
-# -------------------------
+# Grouping storage, network, and service account definitions
 
-module "nested" {
-  for_each = { for stack in var.stack_data : stack.app_name => stack }
-  source   = "./modules/nested"
-
-  network_id   = var.network_id
-  app_name     = each.value.app_name
-  region       = each.value.region
-  zone         = each.value.zone
-  machine_type = var.machine_type
-  os_image     = var.os_image
+resource "google_storage_bucket" "default" {
+  name     = "${var.app_name}-bucket"
+  location = "US"
 }
 
-# -------------------------
-# After - Nested Module
-# -------------------------
-
-resource "google_compute_subnetwork" "default" {
-  network = var.network_id
-  name    = "${var.app_name}-snet"
-  region  = var.region
-}
-
-resource "google_compute_instance" "default" {
-  name         = var.app_name
-  machine_type = var.machine_type
-  zone         = var.zone
-
-  boot_disk {
-    initialize_params {
-      image = var.os_image
-    }
-  }
-
-  network_interface {
-    subnetwork = google_compute_subnetwork.default.self_link
-  }
-
-  service_account {
-    email  = google_service_account.default.email
-    scopes = ["cloud-platform"]
-  }
+resource "google_compute_network" "default" {
+  name = "${var.app_name}-vpc"
 }
 
 resource "google_service_account" "default" {

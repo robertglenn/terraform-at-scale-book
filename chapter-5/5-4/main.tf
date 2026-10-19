@@ -1,12 +1,29 @@
 
-module "server_iam_identities" {
-  source = "./modules/iam_identities"
+variable "network_data" {
+  description = "Network data for VPC networks."
 
-  identity_data = var.server_identity_data
+  type = object({
+    domain = string
+    ranges = list(string)
+  })
 }
 
-module "cluster_iam_identities" {
-  source = "./modules/iam_identities"
+module "vpc" {
+  source = "./modules/vpc"
 
-  identity_data = var.cluster_identity_data
+  network_data = var.network_data
+}
+
+module "firewalls" {
+  source = "./modules/firewalls"
+
+  network = module.vpc.network
+  ranges  = module.vpc.ranges
+}
+
+module "dns" {
+  source = "./modules/dns"
+
+  network = module.vpc.network
+  ranges  = module.vpc.ranges
 }

@@ -26,4 +26,6 @@ resource "google_compute_instance" "instance" {
     email  = google_service_account.default.email
     scopes = ["cloud-platform"]
   }
+
+  depends_on = [google_compute_network.vpc]
 }

@@ -2,7 +2,7 @@
 module "network" {
   source = "../network"
 
-  vpc_name = "vpc-tas-3-2"
+  vpc_name = "vpc-tas-3-12"
   regions  = ["us-central1", "us-east1", "us-west1"]
 }
 
