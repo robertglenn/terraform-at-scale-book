@@ -27,3 +27,8 @@ resource "google_compute_instance" "instance" {
     scopes = ["cloud-platform"]
   }
 }
+
+resource "google_service_account" "default" {
+  account_id   = "service-account-id"
+  display_name = "Service Account"
+}
