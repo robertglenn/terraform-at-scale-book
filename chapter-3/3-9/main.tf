@@ -1,4 +1,3 @@
-# The locals{} block appears here for convenience, only. Ideally, it is place in it's own locals.tf file
 
 locals {
   augmented_vms_map = {
