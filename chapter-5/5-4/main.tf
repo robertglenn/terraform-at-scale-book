@@ -1,13 +1,4 @@
 
-variable "network_data" {
-  description = "Network data for VPC networks."
-
-  type = object({
-    domain = string
-    ranges = list(string)
-  })
-}
-
 module "vpc" {
   source = "./modules/vpc"
 
@@ -25,5 +16,5 @@ module "dns" {
   source = "./modules/dns"
 
   network = module.vpc.network
-  ranges  = module.vpc.ranges
+  domain  = var.network_data.domain
 }
