@@ -1,25 +1,28 @@
 
-# Descriptions omitted for brevity
-
 variable "network_name" {
-  type = string
+  description = "Name of the network"
+  type        = string
 }
 
 variable "instance_name" {
-  type = string
+  description = "Name of the GCE instance"
+  type        = string
 }
 
 variable "machine_type" {
-  type    = string
-  default = "n2-standard-2"
+  description = "Machine type for the GCE instance"
+  type        = string
+  default     = "n2-standard-2"
 }
 
 variable "instance_zone" {
-  type    = string
-  default = "us-central1-a"
+  description = "Resource zone for the GCE instance"
+  type        = string
+  default     = "us-central1-a"
 }
 
 variable "boot_image" {
-  type    = string
-  default = "debian-cloud/debian-12"
+  description = "Boot image for the GCE instance"
+  type        = string
+  default     = "debian-cloud/debian-12"
 }

@@ -1,5 +1,6 @@
 
 variable "domain" {
-  type    = string
-  default = ""
+  description = "Domain name for the DNS zone"
+  type        = string
+  default     = ""
 }

@@ -11,5 +11,5 @@ resource "google_dns_record_set" "a_record" {
 
   name         = var.dns_domain
   type         = "A"
-  managed_zone = google_dns_managed_zone.special.name
+  managed_zone = google_dns_managed_zone.special[0].name
 }
