@@ -1,10 +1,12 @@
 jobs:
   build:
     runs-on: ubuntu-latest
+    container:
+      image: hashicorp/terraform:latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install dependencies
-        run: prepare.sh
+      - name: Prepare infrastructure
+        run: ./prepare.sh

@@ -1,27 +1,43 @@
+on:
+  push:
+    branches: [main]
 
 jobs:
   unit-test:
     runs-on: ubuntu-latest
+    container:
+      image: hashicorp/terraform:latest
     steps:
-      - uses: actions/checkout@v4
-      - run: npm test
-  
+      - uses: actions/checkout@v6
+      - run: terraform test
+
   lint:
     runs-on: ubuntu-latest
+    container:
+      image: hashicorp/terraform:latest
     steps:
-      - uses: actions/checkout@v4
-      - run: npm run lint
+      - uses: actions/checkout@v6
+      - run: terraform validate
 
-  build:
+  plan:
     runs-on: ubuntu-latest
+    container:
+      image: hashicorp/terraform:latest
     needs: [unit-test, lint]
     steps:
-      - uses: actions/checkout@v4
-      - run: npm run build
+      - uses: actions/checkout@v6
+      - run: terraform plan -out=plan.tfplan
+      - uses: actions/upload-artifact@v4
+        with:
+          name: plan-artifact
+          path: plan.tfplan
 
-  deploy:
+  apply:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - run: ./deploy.sh
+      - uses: actions/download-artifact@v4
+        with:
+          name: plan-artifact

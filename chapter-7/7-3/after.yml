@@ -3,7 +3,7 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image: ghcr.io/tas/gha-prep:latest
+      image: hashicorp/terraform:latest
 
     steps:
       - name: Checkout code
