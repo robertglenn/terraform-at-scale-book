@@ -1,9 +1,11 @@
 
 variable "network_name" {
-  type = string
+  description = "Name of the VPC in both providers"
+  type        = string
 }
 
 variable "cidr_block" {
-  type    = string
-  default = "10.0.0.0/16"
+  description = "CIDR for the AWS network"
+  type        = string
+  default     = "10.0.0.0/16"
 }
