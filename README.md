@@ -4,9 +4,6 @@ Ebook version available on [O'Reilly Platform](https://learning.oreilly.com/libr
 
 Print copy available for pre-order on [Amazon](https://www.amazon.com/Terraform-Scale-Practices-Enterprise-Development/dp/B0GKF63FJ4/ref=sr_1_1).
 
-## Disclaimer (October 19, 2026)
-This repository is a work in progress. Examples here will be updated with estimated time of completion October 21, 2026 by 11:59 ET.
-
 ## Example Code
 This repository includes both working and simulated code (e.g. written in Hashicorp Configuration Language (HCL) as well as other languages and formats) intended to be used as examples in the Terraform at Scale book (O'Reilly, 2026).
 
