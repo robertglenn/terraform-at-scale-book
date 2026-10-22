@@ -1,12 +1,15 @@
 
 output "static_bucket" {
-  value = google_storage_bucket.static.name
+  description = "Name of the static website's bucket"
+  value       = google_storage_bucket.static.name
 }
 
 output "cloudsql_connection" {
-  value = google_sql_database_instance.main.connection_name
+  description = "Cloud SQL connection name"
+  value       = google_sql_database_instance.main.connection_name
 }
 
 output "app_engine_sa" {
-  value = google_service_account.app_engine.email
+  description = "App engine service account email"
+  value       = google_service_account.app_engine.email
 }

@@ -1,40 +1,47 @@
 
 variable "project_id" {
-  type        = string
   description = "GCP Project ID"
+  type        = string
 }
 
 variable "region" {
-  type    = string
-  default = "us-central1"
+  description = "Resource region for the resources"
+  type        = string
+  default     = "us-central1"
 }
 
 variable "app_engine_region" {
-  type    = string
-  default = "us-central"
+  description = "App engine location"
+  type        = string
+  default     = "us-central"
 }
 
 variable "subnet_cidr" {
-  type    = string
-  default = "10.10.0.0/16"
+  description = "CIDR for the subnet"
+  type        = string
+  default     = "10.10.0.0/16"
 }
 
 variable "serverless_cidr" {
-  type    = string
-  default = "10.8.0.0/28"
+  description = "CIDR for the app engine access connector"
+  type        = string
+  default     = "10.8.0.0/28"
 }
 
 variable "db_name" {
-  type    = string
-  default = "appdb"
+  description = "Name of the SQL database"
+  type        = string
+  default     = "appdb"
 }
 
 variable "db_user" {
-  type    = string
-  default = "appuser"
+  description = "User for the SQL database"
+  type        = string
+  default     = "appuser"
 }
 
 variable "db_password" {
-  type      = string
-  sensitive = true
+  description = "Password for the SQL database user"
+  type        = string
+  sensitive   = true
 }
