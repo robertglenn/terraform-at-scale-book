@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # create the directories
 mkdir -p envs/prod
 mkdir -p envs/dev

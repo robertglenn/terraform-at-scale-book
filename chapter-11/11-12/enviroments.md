@@ -1,3 +1,6 @@
+# Filesystem after creating environment-specific configurations
+
+```text
 root-module/
 ├── main.tf
 ├── variables.tf
@@ -13,3 +16,4 @@ root-module/
     └── prod/
         ├── providers.tf
         └── dev.auto.tfvars
+```text
