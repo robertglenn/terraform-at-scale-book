@@ -3,20 +3,20 @@
 # Locals and Data Sources
 # *****************************************************************************
 locals {
-  vpc_name                = "tas-11-vpc"
+  vpc_name                = "tas-11-3-vpc"
   location                = upper(split("-", local.region_one)[0])
-  bucket_name             = "tas-11-bucket"
+  bucket_name             = "tas-11-3-bucket"
   developer_group         = "group:${var.developer_group_email}"
   region_one              = data.google_compute_zones.region_one.id
   zone_one                = data.google_compute_zones.region_one.names[0]
-  region_one_snet_name    = "tas-11-${local.region_one}-snet"
-  region_one_disk_name    = "tas-11-${local.region_one}-disk"
-  region_one_compute_name = "tas-11-${local.region_one}-comp"
+  region_one_snet_name    = "tas-11-3-${local.region_one}-snet"
+  region_one_disk_name    = "tas-11-3-${local.region_one}-disk"
+  region_one_compute_name = "tas-11-3-${local.region_one}-comp"
   region_two              = data.google_compute_zones.region_two.id
   zone_two                = data.google_compute_zones.region_two.names[0]
-  region_two_snet_name    = "tas-11-${local.region_two}-snet"
-  region_two_disk_name    = "tas-11-${local.region_two}-disk"
-  region_two_compute_name = "tas-11-${local.region_two}-comp"
+  region_two_snet_name    = "tas-11-3-${local.region_two}-snet"
+  region_two_disk_name    = "tas-11-3-${local.region_two}-disk"
+  region_two_compute_name = "tas-11-3-${local.region_two}-comp"
 }
 
 data "google_compute_zones" "region_one" {

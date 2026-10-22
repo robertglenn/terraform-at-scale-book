@@ -1,9 +1,9 @@
 
 locals {
-  region_one_disk_name    = "tas-11-${var.region_one}-disk"
-  region_one_compute_name = "tas-11-${var.region_one}-comp"
-  region_two_disk_name    = "tas-11-${var.region_two}-disk"
-  region_two_compute_name = "tas-11-${var.region_two}-comp"
+  region_one_disk_name    = "${var.app_name}-${var.region_one}-disk"
+  region_one_compute_name = "${var.app_name}-${var.region_one}-comp"
+  region_two_disk_name    = "${var.app_name}-${var.region_two}-disk"
+  region_two_compute_name = "${var.app_name}-${var.region_two}-comp"
 }
 
 resource "google_compute_disk" "region_one" {

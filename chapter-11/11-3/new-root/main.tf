@@ -3,13 +3,15 @@
 # Locals and Data Sources
 # *****************************************************************************
 locals {
-  vpc_name    = "tas-11-vpc"
-  location    = upper(split("-", local.region_one)[0])
-  bucket_name = "tas-11-bucket"
-  region_one  = data.google_compute_zones.region_one.id
-  zone_one    = data.google_compute_zones.region_one.names[0]
-  region_two  = data.google_compute_zones.region_two.id
-  zone_two    = data.google_compute_zones.region_two.names[0]
+  vpc_name        = "tas-11-3-vpc"
+  location        = upper(split("-", local.region_one)[0])
+  bucket_name     = "tas-11-3-bucket"
+  developer_group = "group:${var.developer_group_email}"
+  region_one      = data.google_compute_zones.region_one.id
+  zone_one        = data.google_compute_zones.region_one.names[0]
+  region_two      = data.google_compute_zones.region_two.id
+  zone_two        = data.google_compute_zones.region_two.names[0]
+  app_name        = "tas-11-3"
 }
 
 data "google_compute_zones" "region_one" {
@@ -50,17 +52,27 @@ module "compute" {
   boot_disk_size  = var.boot_disk_size
   subnet_one_link = module.network.subnet_one_link
   subnet_two_link = module.network.subnet_two_link
+  app_name        = local.app_name
 }
 
 # *****************************************************************************
 # Other Componets
 # *****************************************************************************
 
-module "local_main" {
-  source = "./modules/main"
+resource "google_storage_bucket" "default" {
+  name     = local.bucket_name
+  project  = var.project_id
+  location = local.location
+}
 
-  developer_group_email = var.developer_group_email
-  project_id            = var.project_id
-  location              = local.location
-  bucket_name           = local.bucket_name
+resource "google_storage_bucket_iam_member" "bucket_admin" {
+  bucket = google_storage_bucket.default.name
+  role   = "roles/storage.admin"
+  member = local.developer_group
+}
+
+resource "google_project_iam_member" "compute_admin" {
+  project = var.project_id
+  role    = "roles/compute.admin"
+  member  = local.developer_group
 }
