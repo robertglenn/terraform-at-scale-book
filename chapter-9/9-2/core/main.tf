@@ -1,6 +1,6 @@
 
 resource "google_project_iam_policy" "core" {
-  project     = var.project_id
+  project     = var.app_proj_id
   policy_data = data.google_iam_policy.core.policy_data
 }
 
@@ -11,16 +11,15 @@ data "google_iam_policy" "core" {
     members = [
       "group:stakeholders@tas-9-2.com",
       "group:developers@tas-9-2.com",
-      "serviceAccount:infra-ops@${var.infra_project_id}.iam.gserviceaccount.com",
-      "serviceAccount:app-identity@${var.project_id}.iam.gserviceaccount.com",
+      "serviceAccount:ops@${var.infra_proj_id}.iam.gserviceaccount.com",
+      "serviceAccount:app-id@${var.app_proj_id}.iam.gserviceaccount.com"
     ]
   }
 
   binding {
     role = "roles/editor"
-
     members = [
-      "serviceAccount:infra-ops@${var.infra_project_id}.iam.gserviceaccount.com",
+      "serviceAccount:ops@${var.infra_proj_id}.iam.gserviceaccount.com",
     ]
   }
 }

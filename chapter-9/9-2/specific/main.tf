@@ -4,7 +4,7 @@ resource "google_bigquery_dataset" "dataset" {
 }
 
 resource "google_bigquery_dataset_iam_policy" "specific" {
-  project     = var.project_id
+  project     = var.app_proj_id
   dataset_id  = google_bigquery_dataset.dataset.dataset_id
   policy_data = data.google_iam_policy.specific.policy_data
 }
@@ -22,7 +22,7 @@ data "google_iam_policy" "specific" {
     role = "roles/bigquery.connectionUser"
 
     members = [
-      "serviceAccount:app-identity@${var.project_id}.iam.gserviceaccount.com",
+      "serviceAccount:app-id@${var.app_proj_id}.iam.gserviceaccount.com"
     ]
   }
 }
