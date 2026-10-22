@@ -1,4 +1,4 @@
 
 locals {
-  any_value = true
+  create_subnets = var.read_from_subnet == ""
 }

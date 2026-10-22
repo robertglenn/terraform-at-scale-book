@@ -3,7 +3,7 @@ module "local" {
   source = "./modules/local"
 
   read_from_bucket = google_storage_bucket.example.time_created
-  read_from_subnet = google_compute_subnetwork.example
+  read_from_subnet = google_compute_subnetwork.example.creation_timestamp
 }
 
 resource "google_storage_bucket" "example" {
