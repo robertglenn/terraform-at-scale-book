@@ -2,23 +2,22 @@ stages:
   - build
   - deploy
 
-build_app:
+plan_infra:
   stage: build
-  image: node:20
+  image: hashicorp/terraform:latest
   script:
-    - npm ci
-    - npm run build
-    - tar -czf app.tar.gz dist/
+    - terraform init
+    - terraform plan -out=plan.tfplan
   artifacts:
     paths:
-      - app.tar.gz
+      - plan.tfplan
     expire_in: 1 hour
 
-trigger_deploy:
+trigger_apply:
   stage: deploy
   trigger:
     project: platform/deploy-pipeline
     branch: main
     strategy: depend
   variables:
-    APP_ARTIFACT_NAME: app.tar.gz
+    PARENT_ID: $CI_PIPELINE_ID

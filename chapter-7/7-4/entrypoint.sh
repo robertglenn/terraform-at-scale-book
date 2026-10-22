@@ -7,11 +7,11 @@ MAKE_PUBLIC="${MAKE_PUBLIC:-false}"
 case "$JOB_ENV" in
   dev)
     export TF_VAR_environment="dev"
-    export NETWORK_TIER="internal"
+    export TF_VAR_network_tier="internal"
     ;;
   prod)
     export TF_VAR_environment="prod"
-    export NETWORK_TIER="restricted"
+    export TF_VAR_network_tier="restricted"
     ;;
   *)
     echo "ERROR: Unknown JOB_ENV '$JOB_ENV'"
@@ -20,9 +20,9 @@ case "$JOB_ENV" in
 esac
 
 if [[ "$MAKE_PUBLIC" == "true" ]]; then
-  export ENABLE_PUBLIC_NETWORKING="true"
+  export TF_VAR_enable_public_networking="true"
 else
-  export ENABLE_PUBLIC_NETWORKING="false"
+  export TF_VAR_enable_public_networking="false"
 fi
 
 terraform init

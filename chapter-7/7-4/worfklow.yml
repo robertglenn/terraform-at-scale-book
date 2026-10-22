@@ -1,9 +1,8 @@
 jobs:
   build:
     runs-on: ubuntu-latest
-
     container:
-      image: ghcr.io/tas/job:1.0.0
+      image: hashicorp/terraform:latest
 
     env:
       # These get passed to the container and can be read
